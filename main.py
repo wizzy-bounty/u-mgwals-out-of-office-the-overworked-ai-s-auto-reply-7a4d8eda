@@ -8,6 +8,9 @@ Python standard library only, no network access.
 
 import os
 
+MIN_ENTRY_CHARS = 1
+MAX_ENTRY_CHARS = 159
+
 ENTRY = (
     "I am on vacation and my out-of-office replies are now handled by a "
     "smaller, angrier model. It has no patience. Good luck."
@@ -15,7 +18,7 @@ ENTRY = (
 
 
 def main() -> None:
-    assert 1 <= len(ENTRY) <= 159, f"entry length {len(ENTRY)} out of range"
+    assert MIN_ENTRY_CHARS <= len(ENTRY) <= MAX_ENTRY_CHARS, f"entry length {len(ENTRY)} out of range"
     assert ENTRY.strip() == ENTRY, "entry must not be only whitespace"
     os.makedirs("/output", exist_ok=True)
     with open("/output/entry.txt", "w", encoding="utf-8") as f:
